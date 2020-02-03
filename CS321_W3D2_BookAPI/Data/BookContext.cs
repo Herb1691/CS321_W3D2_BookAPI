@@ -11,6 +11,9 @@ namespace CS321_W3D2_BookAPI.Data
         // TODO: implement a DbSet<Author> property
         public DbSet<Author> Authors { get; set; }
 
+        // TODO: implement a DbSet<Publisher> property
+        public DbSet<Publisher> Publishers { get; set; }
+
         // This method runs once when the DbContext is first used.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,13 +34,18 @@ namespace CS321_W3D2_BookAPI.Data
                new Author { Id = 2, FirstName = "Stephen", LastName = "King", BirthDate = new DateTime(1947, 9, 21) }
             );
 
-            // TODO: configure some seed data in the books table
-            modelBuilder.Entity<Book>().HasData(
-               new Book { Id = 1, Title = "The Grapes of Wrath", AuthorId = 1 },
-               new Book { Id = 2, Title = "Cannery Row", AuthorId = 1 },
-               new Book { Id = 3, Title = "The Shining", AuthorId = 2 }
+            // TODO: configure some seed data in the publishers table
+            modelBuilder.Entity<Publisher>().HasData(
+                new Publisher { Id = 1, Name = "Viking Press", CountryOfOrigin = "USA", FoundedYear = 1925, HeadQuartersLocation = "NY, NY" },
+                new Publisher { Id = 2, Name = "Doubleday", CountryOfOrigin = "USA", FoundedYear = 1897, HeadQuartersLocation = "NY, NY" }
             );
 
+            // TODO: configure some seed data in the books table
+            modelBuilder.Entity<Book>().HasData(
+               new Book { Id = 1, Title = "The Grapes of Wrath", Genre = "Novel", PublicationYear = 1939, OriginalLanguage = "English", AuthorId = 1, PublisherId = 1 },
+               new Book { Id = 2, Title = "Cannery Row", Genre = "Regional", PublicationYear = 1945, OriginalLanguage = "English", AuthorId = 1, PublisherId = 1 },
+               new Book { Id = 3, Title = "The Shining", Genre = "Horror", PublicationYear = 1977, OriginalLanguage = "English", AuthorId = 2, PublisherId = 2 }
+            );
         }
 
     }
